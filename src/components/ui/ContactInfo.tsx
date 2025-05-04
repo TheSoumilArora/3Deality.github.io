@@ -6,8 +6,8 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    content: "contact@3deality.in",
-    link: "mailto:contact@3deality.in",
+    content: "3dealityprinting@gmail.com",
+    link: "mailto:3dealityprinting@gmail.com",
   },
   {
     icon: Phone,
@@ -18,13 +18,13 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Location",
-    content: "123 Innovation Street, Tech City, TC 12345",
-    link: "https://maps.google.com",
+    content: "SCO-31, R2, New Chandigarh, India",
+    link: "https://maps.app.goo.gl/fBhLbg4xtZFmStUd7",
   },
   {
     icon: Clock,
     title: "Business Hours",
-    content: "Monday - Friday: 9AM - 6PM",
+    content: "Monday - Saturday: 9AM - 6PM",
     link: null,
   },
 ];
