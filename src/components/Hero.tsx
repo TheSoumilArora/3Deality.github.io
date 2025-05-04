@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 
 export const Hero = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const router = useRouter();
   return (
     <div className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-white to-gray-50">
