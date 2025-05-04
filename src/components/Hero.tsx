@@ -25,10 +25,14 @@ export const Hero = () => {
             Bringing your designs to life with precision and quality.
           </p>
           <div className="mt-10 flex items-center justify-center gap-4">
-            <Button size="lg" className="group" onClick={() => router.push('quote')}>
-              Get a Quote
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
+          <Button
+            size="lg"
+            className="group"
+            onClick={() => window.open('https://forms.gle/6XNEZpBWvx6TdJr8A', '_blank')}
+          >
+            Get a Quote
+            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </Button>
           </div>
         </motion.div>
       </div>
