@@ -245,8 +245,12 @@ const Quote = () => {
                                     />
                                 </div>
 
-                                <Button type="submit" className="w-full">
-                                    Request Quote
+                                <Button
+                                  type="button"
+                                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary"
+                                  onClick={() => window.open("https://forms.gle/6XNEZpBWvx6TdJr8A", "_blank")}
+                                >
+                                  Request Quote
                                 </Button>
                             </form>
                         </motion.div>
