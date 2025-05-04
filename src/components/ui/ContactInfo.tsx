@@ -18,7 +18,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Location",
-    content: "SCO-31, R2, New Chandigarh, India",
+    content: "SCO-31, R2, DLF Hyde Park Estate, New Chandigarh, India",
     link: "https://maps.app.goo.gl/fBhLbg4xtZFmStUd7",
   },
   {
