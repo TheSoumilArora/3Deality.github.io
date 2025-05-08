@@ -21,9 +21,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         {/* Global toasters */}
         <Toaster />
         <Sonner />
-
-        {/* Your page content */}
-        <Component {...pageProps} />
+        {/* single wrapper that pushes everything down by 6rem (96px) */}
+        <div className="pt-24">
+          <Component {...pageProps} />
+        </div>
       </TooltipProvider>
     </QueryClientProvider>
   );

@@ -1,6 +1,7 @@
 // src/pages/products/[category].tsx
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import Link from "next/link";
 import { products, Product } from "@/lib/products";
 
@@ -30,6 +31,9 @@ const ProductCategoryPage = () => {
         />
       </Head>
 
+      {/* Breadcrumb trail */}
+      <Breadcrumbs />
+      
       <main className="px-6 py-12 max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold capitalize mb-8">
           {category?.toString().replace(/-/g, " ")}

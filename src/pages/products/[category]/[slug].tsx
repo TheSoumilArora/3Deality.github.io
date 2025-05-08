@@ -1,6 +1,7 @@
 // src/pages/products/[category]/[slug].tsx
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import Link from "next/link";
 import { products, Product } from "@/lib/products";
 
@@ -27,14 +28,10 @@ const ProductDetailPage = () => {
         <meta name="description" content={product.name} />
       </Head>
 
+      {/* Breadcrumb trail */}
+      <Breadcrumbs />
+      
       <main className="px-6 py-12 max-w-4xl mx-auto space-y-6">
-        {/* Back Link */}
-        <Link href={`/products/${product.category}`} className="text-primary underline mb-4 inline-block">
-
-        &larr; Back to {product.category.replace(/-/g, " ")}
-        
-        </Link>
-
         {/* Content */}
         <div className="flex flex-col md:flex-row gap-8">
           {/* Image */}
