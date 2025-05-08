@@ -6,6 +6,15 @@ import { X, Menu } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 
+// Define all nav items: those with `href` are page links, others scroll to an ID.
+const NAV_ITEMS = [
+  { key: "home",     label: "Home",     scrollTo: "home"      },
+  { key: "services", label: "Services", scrollTo: "services"  },
+  { key: "products", label: "Products", href: "/products"     },
+  { key: "about",    label: "About",    scrollTo: "about"     },
+  { key: "contact",  label: "Contact",  scrollTo: "contact"   },
+];
+
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -13,21 +22,24 @@ export const Navbar = () => {
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
+  // Smooth-scroll on hash change
   useEffect(() => {
     if (window.location.hash) {
-      const element = document.getElementById(window.location.hash.substring(1));
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: "smooth" });
-        }, 100);
+      const id = window.location.hash.substring(1);
+      const el = document.getElementById(id);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 100);
       }
     }
   }, [pathname]);
 
-  const handleScroll = (e:React.MouseEvent<HTMLAnchorElement, MouseEvent>, id:string) => {
+  // Handle clicks for in-page anchors
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    id: string
+  ) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
-
     if (pathname !== "/") {
       router.push(`/#${id}`);
     } else {
@@ -48,32 +60,53 @@ export const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex items-center space-x-2">
-              <span className="text-xl font-bold text-gray-900">3Deality</span>
+              <span className="text-xl font-bold text-gray-900">
+                3Deality
+              </span>
             </Link>
+
+            {/* Desktop nav */}
             <nav className="hidden md:flex items-center space-x-8">
-              {["home", "services", "about", "contact"].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item}`}
-                  className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-                  onClick={(e) => handleScroll(e, item)}
-                >
-                  {item.charAt(0).toUpperCase() + item.slice(1)}
-                </a>
-              ))}
+              {NAV_ITEMS.map((item) =>
+                item.href ? (
+                  <Link
+                    key={item.key}
+                    href={item.href}
+                    className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.key}
+                    href={`#${item.scrollTo}`}
+                    className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+                    onClick={(e) => handleScroll(e, item.scrollTo!)}
+                  >
+                    {item.label}
+                  </a>
+                )
+              )}
             </nav>
           </div>
         </div>
       </motion.header>
 
+      {/* Mobile hamburger button */}
       <button
         onClick={toggleMobileMenu}
         className="md:hidden fixed bottom-4 right-4 z-50 p-4 rounded-full bg-primary text-white shadow-lg"
         aria-label="Toggle mobile menu"
       >
-        {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        {isMobileMenuOpen ? (
+          <X className="h-6 w-6" />
+        ) : (
+          <Menu className="h-6 w-6" />
+        )}
       </button>
 
+      {/* Mobile nav overlay + menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
@@ -93,16 +126,27 @@ export const Navbar = () => {
               className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 rounded-t-3xl z-50 md:hidden"
             >
               <div className="py-6 px-4 space-y-4">
-                {["home", "services", "about", "contact"].map((item) => (
-                  <a
-                    key={item}
-                    href={`#${item}`}
-                    className="block px-4 py-3 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors text-center text-lg"
-                    onClick={(e) => handleScroll(e, item)}
-                  >
-                    {item.charAt(0).toUpperCase() + item.slice(1)}
-                  </a>
-                ))}
+                {NAV_ITEMS.map((item) =>
+                  item.href ? (
+                    <Link
+                      key={item.key}
+                      href={item.href}
+                      className="block px-4 py-3 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors text-center text-lg"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <a
+                      key={item.key}
+                      href={`#${item.scrollTo}`}
+                      className="block px-4 py-3 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors text-center text-lg"
+                      onClick={(e) => handleScroll(e, item.scrollTo!)}
+                    >
+                      {item.label}
+                    </a>
+                  )
+                )}
               </div>
             </motion.nav>
           </>

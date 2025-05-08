@@ -1,4 +1,3 @@
-
 import { Printer, Clock, Shield, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 

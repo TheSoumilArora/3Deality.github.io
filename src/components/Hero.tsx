@@ -1,9 +1,7 @@
-
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-
 
 export const Hero = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

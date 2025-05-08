@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Building2, Users, Trophy, Printer } from "lucide-react";
