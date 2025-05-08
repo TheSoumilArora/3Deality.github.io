@@ -1,6 +1,6 @@
 // src/pages/_app.tsx
 "use client";
-
+import { usePathname } from "next/navigation";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +12,10 @@ import "../styles/global.css";
 const queryClient = new QueryClient();
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const path = usePathname();
+
+  // We only want top padding on non-home pages
+  const wrapperClass = path === "/" ? "" : "pt-16";
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
